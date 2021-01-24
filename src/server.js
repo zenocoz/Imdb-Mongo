@@ -1,11 +1,15 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const listEndpoints = require("express-list-endpoints")
+const cors = require("cors")
 
 const server = express()
 server.use(express.json())
+server.use(cors())
 
-const port = process.env.PORT || 3002
+//routes
+const services = require("./services")
+server.use("/imdb", services)
 
 console.log(listEndpoints)
 
@@ -19,6 +23,8 @@ const connectDb = async () => {
     db.once("open", () => {
       console.log("we're connected!")
     })
+    const port = process.env.PORT || 3002
+
     server.listen(port, () => {
       console.log("server running on port", port)
     })

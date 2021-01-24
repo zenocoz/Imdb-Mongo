@@ -1,13 +1,13 @@
 const express = require("express")
 const mongoose = require("mongoose")
-const FilmModel = require("./schema")
+const ActorModel = require("./schema")
 
 const router = express.Router()
 
 router.post("/", async (req, res, next) => {
   try {
-    const newFilm = new FilmModel(req.body)
-    const { _id } = await newFilm.save()
+    const newActor = new ActorModel(req.body)
+    const { _id } = await newActor.save()
     res.status(201).send(_id)
   } catch (error) {
     console.log(error)
