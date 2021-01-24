@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose")
 
-const directorSchema = new Schema(
+const actorSchema = new Schema(
   {
     name: { String, required: true },
     surname: { Number, required: true },
@@ -12,6 +12,6 @@ const directorSchema = new Schema(
   { timestamps: true }
 )
 
-const DirectorModel = model("Director", directorSchema)
+const ActorModel = model("Actor", actorSchema)
 
-module.exports = DirectorModel
+module.exports = ActorModel

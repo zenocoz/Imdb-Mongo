@@ -6,7 +6,21 @@ const filmSchema = new mongoose.Schema(
     year: { Number, required: true },
     country: { String, required: true },
     director: { String, required: true },
-    cast: [Cast],
+    cast: [
+      {
+        role: { String, required: true },
+        actor: { type: Schema.Types.ObjectId, ref: "Actor", required: true },
+      },
+    ],
+    crew: [
+      {
+        crew_member: {
+          type: Schema.Types.ObjectId,
+          ref: "Crew",
+          required: true,
+        },
+      },
+    ],
     poster: { String, required: true },
   },
   { timestamps: true }
