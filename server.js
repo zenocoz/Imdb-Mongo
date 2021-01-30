@@ -8,7 +8,7 @@ server.use(express.json())
 server.use(cors())
 
 //routes
-const services = require("./services")
+const services = require("./src/services")
 server.use("/imdb", services)
 
 console.log(listEndpoints)
