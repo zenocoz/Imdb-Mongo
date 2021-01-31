@@ -12,7 +12,7 @@ const memberSchema = new mongoose.Schema(
       default:
         "https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-24.jpg",
     },
-    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Film" }],
+    watchlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Film" }],
     watched: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Film", type: Number },
     ],
@@ -23,6 +23,7 @@ const memberSchema = new mongoose.Schema(
         ref: "Member",
       },
     ],
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
   },
   { timestamp: true }
 )
@@ -54,5 +55,5 @@ memberSchema.methods.isValidPassword = async function (enteredPassword) {
   }
 }
 
-const member = mongoose.model("member", memberSchema)
+const member = mongoose.model("Member", memberSchema)
 module.exports = member

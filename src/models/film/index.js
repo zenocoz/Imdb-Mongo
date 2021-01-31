@@ -6,6 +6,8 @@ const filmSchema = new Schema(
     year: { type: Number, required: true },
     country: { type: String, required: true },
     director: { type: String, required: false },
+    genre: { type: String, required: false },
+
     cast: [
       {
         role: { type: String, required: true },

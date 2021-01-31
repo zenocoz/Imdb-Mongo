@@ -13,6 +13,6 @@ const crewMemberSchema = new Schema(
   { timestamps: true }
 )
 
-const CrewMemberModel = model("Crew", crewMemberSchema)
+const CrewMemberModel = model("CrewMember", crewMemberSchema)
 
 module.exports = CrewMemberModel
