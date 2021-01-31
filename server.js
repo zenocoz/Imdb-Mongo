@@ -2,6 +2,13 @@ const express = require("express")
 const mongoose = require("mongoose")
 const listEndpoints = require("express-list-endpoints")
 const cors = require("cors")
+const {
+  notFoundHandler,
+  forbiddenHandler,
+  badRequestHandler,
+  unAuthorizedHandler,
+  genericHandler,
+} = require("./src/helpers/errorHandling")
 
 const server = express()
 server.use(express.json())
@@ -10,6 +17,13 @@ server.use(cors())
 //routes
 const services = require("./src/services")
 server.use("/imdb", services)
+
+//ERROR HANDLING MIDDLEWARES
+server.use(notFoundHandler)
+server.use(badRequestHandler)
+server.use(forbiddenHandler)
+server.use(unAuthorizedHandler)
+server.use(genericHandler)
 
 console.log(listEndpoints)
 
