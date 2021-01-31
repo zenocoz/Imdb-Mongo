@@ -1,6 +1,6 @@
 const express = require("express")
 const mongoose = require("mongoose")
-const ActorModel = require("./schema")
+const ActorModel = require("../../models/actor")
 
 const router = express.Router()
 

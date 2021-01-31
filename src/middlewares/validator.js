@@ -31,7 +31,7 @@ exports.memberLoginSchema = Joi.object().keys({
 
 exports.filmSchema = Joi.object().keys({
   title: Joi.string().min(1).required(),
-  year: Joi.number().min(4).required(),
+  year: Joi.number().integer().min(1895).required(),
   country: Joi.string().min(1).required(),
   // director: Joi.required(),
   genre: Joi.string(),

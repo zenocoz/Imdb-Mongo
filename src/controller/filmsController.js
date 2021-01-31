@@ -4,7 +4,10 @@ const ApiError = require("../classes/ApiError")
 exports.addFilm = async (req, res, next) => {
   try {
     const { title, year } = req.body
-    const foundFilm = await db.Film.findOne(title, year).exec()
+    const foundFilm = await db.Film.findOne(
+      { title },
+      { year: year.toString() }
+    ).exec()
     if (!foundFilm) {
       const newFilm = new db.Film({ ...req.body })
       await newFilm.save()

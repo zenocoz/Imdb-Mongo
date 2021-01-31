@@ -1,18 +1,14 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const FilmModel = require("./schema")
+const router = require("express").Router()
+const cloudinaryMulter = require("../../middlewares/cloudinary")
 
-const router = express.Router()
+const { addFilm } = require("../../controller/filmsController")
+const { filmSchema, validateBody } = require("../../middlewares/validator")
 
-router.post("/", async (req, res, next) => {
-  try {
-    const newFilm = new FilmModel(req.body)
-    const { _id } = await newFilm.save()
-    res.status(201).send(_id)
-  } catch (error) {
-    console.log(error)
-    next(error)
-  }
-})
+router.post("/", validateBody(filmSchema), addFilm)
+// router.get("/", get);
+// router.get("/:postId", getSinglePost);
+// router.put("/:postId", validateBody(postSchema), modifyPost);
+// router.delete("/:postId", deletePost);
+// router.post("/:postId/picture", cloudinaryMulter.single("post"), postImage);
 
 module.exports = router
