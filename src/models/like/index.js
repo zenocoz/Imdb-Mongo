@@ -4,8 +4,8 @@ const { Schema, model } = require("mongoose")
 
 const likeSchema = new Schema(
   {
-    member: { type: Schema.Types.ObjectId, ref: "Member" },
-    review: { type: Schema.Types.ObjectId, ref: "Review" },
+    memberid: { type: Schema.Types.ObjectId, ref: "Member" },
+    reviewid: { type: Schema.Types.ObjectId, ref: "Review" },
   },
   { timestamps: true }
 )

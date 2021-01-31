@@ -2,10 +2,11 @@ const { Schema, model } = require("mongoose")
 
 const reviewSchema = new Schema(
   {
-    member: { type: Schema.Types.ObjectId, ref: "Member" },
-    text: { type: String, required: true },
+    memberid: { type: Schema.Types.ObjectId, ref: "Member" },
+    text: { type: String },
     filmid: { type: Schema.Types.ObjectId, ref: "Film" },
     likes: [{ type: Schema.Types.ObjectId, ref: "Like" }],
+    image: { type: String },
   },
   { timestamps: true }
 )

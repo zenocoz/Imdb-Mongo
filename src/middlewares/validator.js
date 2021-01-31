@@ -1,91 +1,81 @@
 const Joi = require("joi")
 
-exports.filmSchema = Joi.object().keys({
-  comment: Joi.string().min(1).required(),
-  postId: Joi.required(),
-  userId: Joi.required(),
+//Member
+
+exports.memberSignupSchema = Joi.object().keys({
+  name: Joi.string().min(1).required(),
+  surname: Joi.string().required(),
+  email: Joi.string().email().required(),
+  username: Joi.string().min(3).required(),
+  password: Joi.string().min(6).required(),
+  image: Joi.string().pattern(
+    /http?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+  ),
 })
 
-exports.directorSchema = Joi.object().keys({
-  text: Joi.string().min(1).required(),
-  username: Joi.string().required(),
-  user: Joi.required(), //TODO check this one
-  likes: Joi.allow(),
-  image: Joi.string(),
-  /* .pattern(
-		/http?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
-	), */
+exports.memberEditSchema = Joi.object().keys({
+  name: Joi.string().min(1).required(),
+  surname: Joi.string().required(),
+  email: Joi.string().email().required(),
+  username: Joi.string().min(3).required(),
+  password: Joi.string().min(6).required(),
+  image: Joi.string().pattern(
+    /http?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+  ),
 })
+
+exports.memberLoginSchema = Joi.object().keys({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required(),
+})
+
+exports.filmSchema = Joi.object().keys({
+  title: Joi.string().min(1).required(),
+  year: Joi.number().min(4).required(),
+  country: Joi.string().min(1).required(),
+  // director: Joi.required(),
+  genre: Joi.string(),
+  cast: Joi.allow(),
+  crew: Joi.allow(),
+  poster: Joi.string().pattern(
+    /http?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+  ),
+})
+
 exports.actorSchema = Joi.object().keys({
-  user: Joi.string(),
-  role: Joi.string().min(3).required(),
-  company: Joi.string().min(3).required(),
-  startDate: Joi.date().required(),
-  endDate: Joi.date(),
-  //username: Joi.string().required(),
-  description: Joi.string().max(300),
-  area: Joi.string(),
+  name: Joi.string().min(1).required(),
+  surname: Joi.string().required(),
+  dateofbirth: Joi.allow(),
+  country: Joi.allow(),
+  films: Joi.allow(),
   image: Joi.string().pattern(
     /http?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
   ),
 })
 exports.crewMemberSchema = Joi.object().keys({
-  user: Joi.string(),
-  role: Joi.string().min(3).required(),
-  company: Joi.string().min(3).required(),
-  startDate: Joi.date().required(),
-  endDate: Joi.date(),
-  //username: Joi.string().required(),
-  description: Joi.string().max(300),
-  area: Joi.string(),
+  name: Joi.string().min(1).required(),
+  surname: Joi.string().required(),
+  dateofbirth: Joi.allow(),
+  country: Joi.allow(),
+  films: Joi.allow(),
   image: Joi.string().pattern(
     /http?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
   ),
 })
 
 exports.reviewSchema = Joi.object().keys({
-  user: Joi.string(),
-  role: Joi.string().min(3).required(),
-  company: Joi.string().min(3).required(),
-  startDate: Joi.date().required(),
-  endDate: Joi.date(),
-  //username: Joi.string().required(),
-  description: Joi.string().max(300),
-  area: Joi.string(),
+  memberid: Joi.required(),
+  text: Joi.allow(),
+  filmid: Joi.required(),
+  likes: Joi.allow(),
   image: Joi.string().pattern(
     /http?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
   ),
 })
 
-exports.userSignupSchema = Joi.object().keys({
-  name: Joi.string().min(1).required(),
-  surname: Joi.string().required(),
-  email: Joi.string().email().required(),
-  username: Joi.string().min(3).required(),
-  password: Joi.string().min(6).required(),
-  bio: Joi.string().min(1),
-  title: Joi.string().max(300),
-  area: Joi.string().max(100),
-  //experiences: Joi.exist(),
-  image: Joi.string().pattern(
-    /http?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
-  ),
-})
-
-exports.userEditSchema = Joi.object().keys({
-  name: Joi.string().min(1).required(),
-  surname: Joi.string().required(),
-  email: Joi.string().email().required(),
-  username: Joi.string().min(3).required(),
-  bio: Joi.string().min(1),
-  title: Joi.string().max(300),
-  area: Joi.string().max(100),
-  image: Joi.string(),
-})
-
-exports.userLoginSchema = Joi.object().keys({
-  email: Joi.string().email().required(),
-  password: Joi.string().min(6).required(),
+exports.likeSchema = Joi.object().keys({
+  memberid: Joi.required(),
+  reviewid: Joi.required(),
 })
 
 // Generic validator function to check body
