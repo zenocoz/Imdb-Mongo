@@ -22,5 +22,20 @@ exports.addFilm = async (req, res, next) => {
 }
 exports.getFilm = async (req, res, next) => {}
 exports.getAllFilms = async (req, res, next) => {}
-exports.editFilmData = async (req, res, next) => {}
+exports.editFilmData = async (req, res, next) => {
+  try {
+    const modifiedFilm = await db.Film.findByIdAndUpdate(
+      req.params.filmId,
+      req.body
+    )
+    if (modifiedFilm) {
+      res.status(201).json({ data: modifiedFilm })
+    } else {
+      throw new ApiError(401, "Film not found")
+    }
+  } catch (error) {
+    console.log("error in modifying film data", error)
+    next(error)
+  }
+}
 exports.deleteFilm = async (req, res, next) => {}
