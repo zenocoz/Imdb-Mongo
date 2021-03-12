@@ -7,7 +7,8 @@ const omdbApi = "http://omdbapi.com/?apikey=d541d8b3"
 
 router.get("/", async (req, res, next) => {
   try {
-    const titleSearch = "t=" + req.body.title
+    console.log(req.query)
+    const titleSearch = "t=" + req.query.title
     const result = await axios.get(`${omdbApi}&${titleSearch}`, {
       method: "get",
       headers: { "Content-Type": "application/json" },
